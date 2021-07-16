@@ -31,14 +31,14 @@ class DullView(generics.ListCreateAPIView):
 
     queryset = DullAPI.objects.all()
     serializer_class = DullSerializer
-    permission_classes = [BlocklistPermission]
+    # permission_classes = [BlocklistPermission]
 
     def get(self, request, format=None):
         print(self.get_queryset())
         ip_addr = request.META["REMOTE_ADDR"]
         blocked = BlockList.objects.filter(ip_address=ip_addr).exists()
         if blocked:
-            return Response("IP Address not allowed", status=status.HTTP_403_FORBIDDEN)
+            return Response("ip {}  not allowed".format(ip_addr), status=status.HTTP_403_FORBIDDEN)
         else:
             return Response(self.serializer_class(DullAPI.objects.all(), many=True).data)
 
