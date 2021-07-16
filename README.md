@@ -1,4 +1,4 @@
-# api-whitemasking django 
+# api-whitemasking DRF
 django api demonstrate working of api whitemasking 
 
 ## This API also demonstrate the working of calling  an external api So, It is better to implement an external API before running it.
